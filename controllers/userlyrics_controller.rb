@@ -16,10 +16,18 @@ class UserLyricsController < ApplicationController
     # return the array of songs that matched to_json
 
 
-  get '/:id' do
+  get '/:user_id' do
+    @user_id = params[:user_id]
 
-    @id = params[:id]
-    Userlyrics.find(@id).to_json
+
+
+    @model = Userlyrics.find(@user_id)
+    @model.user_id = @user_id
+    @model.song_id = @song_id
+    @model.artist = @artist
+    @model.song = @song
+    @model.save
+
 
   end
 
