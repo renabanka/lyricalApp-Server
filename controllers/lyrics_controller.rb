@@ -1,6 +1,7 @@
 class LyricsController < ApplicationController
 
 	get '/' do
+
 		Lyrics.all.to_json
 	end 
 

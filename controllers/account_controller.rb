@@ -3,9 +3,26 @@ class AccountController < ApplicationController
 	@username = ''
 
 	get '/' do
+
+
+
+
+
 		Account.all.to_json
 
-	end 
+	end
+
+	get '/logout' do
+
+		binding.pry
+		session[:user] = nil
+		@username = nil
+		redirect '/'
+	end
+
+
+
+
 
 	get '/:id' do
 
@@ -83,11 +100,7 @@ class AccountController < ApplicationController
 
 
 
-	get '/logout' do
-		session[:user] = nil
-		@username = nil
-		redirect '/'		
-	end
+
 	
 
 
