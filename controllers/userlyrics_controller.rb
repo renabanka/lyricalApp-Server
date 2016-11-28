@@ -3,12 +3,8 @@ class UserLyricsController < ApplicationController
   get '/' do
     Userlyrics.all.to_json
 
+
   end
-
-  get '/user/:id' do
-    @user_id = params[:id]
-    @users_lyrics = Userlyrics.where(:user_id => @user_id)
-
 
 
     # loop through @userlyrics
@@ -18,7 +14,7 @@ class UserLyricsController < ApplicationController
     # return array to_json
     # be done
     # return the array of songs that matched to_json
-  end
+
 
   get '/:id' do
 
@@ -32,14 +28,25 @@ class UserLyricsController < ApplicationController
 
     @user_id = params[:user_id]
     @song_id = params[:song_id]
+    @song = params[:song]
+    @artist = params[:artist]
 
 
     @model = Userlyrics.new
     @model.user_id = @user_id
     @model.song_id = @song_id
+    @model.song = @song
+    @model.artist = @artist
     @model.save
     
 
+  end
+
+  delete '/:id' do
+    @id = params[:id]
+    @model = Userlyrics.find(@id)
+    @model.destroy
+    {:message => "item has been destroyed"}.to_json
   end
 
 
