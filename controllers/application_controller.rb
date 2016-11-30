@@ -16,23 +16,13 @@ class ApplicationController < Sinatra::Base
 	
 	# CORS
 	set :allow_origin, :any
-	set :allow_methods, [:get, :post, :options]
-
-	# options "*" do
-	# 	response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
-	# 	response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
-	# 	200
-	# end
+	set :allow_methods, [:get, :post, :options, :delete]
 
 	options "*" do
-	  response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
-
-	  # Needed for AngularJS
-	  response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
-
-	  halt HTTP_STATUS_OK
+		response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
+		response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+		200
 	end
-
 
 
 	configure do

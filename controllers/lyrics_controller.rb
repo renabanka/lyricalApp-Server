@@ -74,7 +74,7 @@ class LyricsController < ApplicationController
 
 	delete '/:id' do
 		@id = params[:id]
-		@model = Userlyrics.find(@id)
+		@model = Lyrics.find(@id)
 		@model.destroy
 		{:message => "item has been destroyed"}.to_json
 	end
